@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberns">
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id" />
+		<result property="email" column="email" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="fileName" column="fileName" />
+		<result property="del" column="del" />
+		<result property="regdate" column="regdate" />
+	</resultMap>
+	<resultMap type="memberphoto" id="memberphotoResult">
+		<result property="num" column="num" />
+		<result property="id" column="id" />
+		<result property="fileName" column="fileName" />
+	</resultMap>
+
+	<!-- myBatis에서 객체명은 소문자로 한다. -->
+	<select id="select" parameterType="string" resultType="member">
+		select *
+		from member where id = #{id}
+	</select>
+
+	<!-- insert, modify, delete를 하면 성공한 갯수가 나온다. 그래서 returnType이 필요없음 -->
+	<insert id="insert" parameterType="member">
+		insert into member
+		values(#{id},#{email},#{password},
+		#{name},#{fileName},'n',sysdate)
+	</insert>
+
+	<update id="update" parameterType="member">
+		update member set email=#{email},password=#{password},
+		name=#{name}
+		<!-- 파일을 수정하지 않으면 먼저 파일 사용 -->
+		<if test="fileName != null">
+			,fileName=#{fileName}
+		</if>
+		where id=#{id}
+	</update>
+
+	<!-- delete 해주기, 데이터를 삭제하는 것이라 숨기는 것임 -->
+	<update id="delete" parameterType="string">
+		update member set del='y'
+		where id=#{id}
+	</update>
+
+	<!-- 파일 여러개 업로드 시키기 -->
+	<insert id="insertPhoto" parameterType="list">
+		insert all
+		<foreach collection="list" item="item">
+			into memberphoto (num, id,
+			fileName)
+			values(get_seq,#{item.id},#{item.fileName})
+		</foreach>
+		select * from dual
+	</insert>
+</mapper>
