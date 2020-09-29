@@ -56,4 +56,9 @@
 		</foreach>
 		select * from dual
 	</insert>
+
+	<select id="listPhoto" parameterType="string"
+		resultMap="memberphotoResult">
+		select * from memberphoto where id =#{id} order by num
+	</select>
 </mapper>

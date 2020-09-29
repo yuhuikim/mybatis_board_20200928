@@ -131,6 +131,16 @@ public class MemberController {
 		return "view";
 	}
 
+	@RequestMapping("view2")
+	public String view2(Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		Member member = ms.select(id);
+		List<MemberPhoto> list = ms.listPhoto(id);
+		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		return "view2";
+	}
+
 	@RequestMapping("updateForm")
 	public String updateForm(Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");

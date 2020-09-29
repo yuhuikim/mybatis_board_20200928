@@ -16,6 +16,9 @@
 				<td><a href="view.html" class="btn btn-info">조회</a></td>
 			</tr>
 			<tr>
+				<td><a href="view2.html" class="btn btn-info">조회(사진복수)</a></td>
+			</tr>
+			<tr>
 				<td><a href="updateForm.html" class="btn btn-warning">수정</a></td>
 			</tr>
 			<tr>

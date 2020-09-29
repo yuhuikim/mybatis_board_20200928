@@ -41,4 +41,8 @@ public class MemberDaoImpl implements MemberDao {
 		sst.insert("memberns.insertPhoto", photos);
 	}
 
+	@Override
+	public List<MemberPhoto> listPhoto(String id) {
+		return sst.selectList("memberns.listPhoto", id);
+	}
 }

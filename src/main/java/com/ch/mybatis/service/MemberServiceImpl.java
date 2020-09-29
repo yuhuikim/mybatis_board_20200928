@@ -39,4 +39,9 @@ public class MemberServiceImpl implements MemberService {
 	public void insertPhoto(List<MemberPhoto> photos) {
 		md.insertPhoto(photos);
 	}
+
+	@Override
+	public List<MemberPhoto> listPhoto(String id) {
+		return md.listPhoto(id);
+	}
 }

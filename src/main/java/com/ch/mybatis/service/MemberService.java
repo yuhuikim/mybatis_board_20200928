@@ -17,4 +17,6 @@ public interface MemberService {
 
 	void insertPhoto(List<MemberPhoto> photos);
 
+	List<MemberPhoto> listPhoto(String id);
+
 }
