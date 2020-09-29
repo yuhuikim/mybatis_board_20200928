@@ -10,7 +10,6 @@
 </head>
 <body>
 	<script type="text/javascript">
-		//location.href = "joinForm.html";
 		location.href = "joinForm2.html";
 	</script>
 </body>
